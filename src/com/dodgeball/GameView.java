@@ -18,6 +18,9 @@ public class GameView extends JFrame implements KeyListener {
 	private JPanel contentPane;
 	JLabel cat;
 	
+	private static final int SPEED = 5;
+	private static final int BOT_SPEED = 5;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -80,16 +83,16 @@ public class GameView extends JFrame implements KeyListener {
 		int keyCode = e.getKeyCode();
 		switch(keyCode) {
 			case KeyEvent.VK_UP:
-        		catH-=5;
+        		catH-=SPEED;
             	break;
 			case KeyEvent.VK_RIGHT:
-				catX+=5;
+				catX+=SPEED;
         		break;
 			case KeyEvent.VK_LEFT:
-				catX-=5;
+				catX-=SPEED;
         		break;
 			case KeyEvent.VK_DOWN:
-				catH+=5;
+				catH+=SPEED;
             	break;
 		}
 		cat.setBounds(250+catX, 150+catH, 50, 50);
@@ -116,7 +119,7 @@ public class GameView extends JFrame implements KeyListener {
 				for(int i=0;i<mobD.size();i++) {
 					switch(mobD.get(i)) {
 						case 0:
-							mobX.set(i, mobX.get(i)+5);
+							mobX.set(i, mobX.get(i)+BOT_SPEED);
 							mobs.get(i).setBounds(mobX.get(i),mobY.get(i),50,50);
 							if(mobX.get(i) > 550) {
 								removeMob(i);
@@ -124,7 +127,7 @@ public class GameView extends JFrame implements KeyListener {
 							}
 							break;
 						case 1:
-							mobX.set(i, mobX.get(i)-5);
+							mobX.set(i, mobX.get(i)-BOT_SPEED);
 							mobs.get(i).setBounds(mobX.get(i),mobY.get(i),50,50);
 							if(mobX.get(i) < -50) {
 								removeMob(i);
@@ -132,7 +135,7 @@ public class GameView extends JFrame implements KeyListener {
 							}
 							break;
 						case 2:
-							mobY.set(i, mobY.get(i)+5);
+							mobY.set(i, mobY.get(i)+BOT_SPEED);
 							mobs.get(i).setBounds(mobX.get(i),mobY.get(i),50,50);
 							if(mobY.get(i) > 350) {
 								removeMob(i);
@@ -140,7 +143,7 @@ public class GameView extends JFrame implements KeyListener {
 							}
 							break;
 						case 3:
-							mobY.set(i, mobY.get(i)-5);
+							mobY.set(i, mobY.get(i)-BOT_SPEED);
 							mobs.get(i).setBounds(mobX.get(i),mobY.get(i),50,50);
 							if(mobY.get(i) < -50) {
 								removeMob(i);
@@ -189,7 +192,7 @@ public class GameView extends JFrame implements KeyListener {
 					}
 					contentPane.add(mobs.get(mobs.size()-1));
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
